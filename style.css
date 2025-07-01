@@ -1,0 +1,372 @@
+/* ---=== Attractive HMS style.css ===--- */
+
+/* --- Variables (Optional, but good for consistency) --- */
+:root {
+    --primary-color: #4A90E2;      /* A professional, modern blue */
+    --secondary-color: #50E3C2;    /* A vibrant teal/mint for accents */
+    --dark-text-color: #333745;    /* Dark gray for primary text */
+    --light-text-color: #7A7A7A;   /* Lighter gray for secondary text */
+    --background-light: #F7F9FC; /* Very light gray for body background */
+    --background-card: #FFFFFF;   /* White for content cards/main area */
+    --border-color: #E0E6ED;      /* Light border color */
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
+    --font-sans-serif: 'Roboto', 'Segoe UI', Helvetica, Arial, sans-serif;
+    --font-serif: 'Merriweather', Georgia, serif; /* Optional, for specific text */
+    --box-shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --box-shadow-medium: 0 6px 20px rgba(0, 0, 0, 0.1);
+    --border-radius: 6px;
+}
+
+/* --- General Body and Layout --- */
+body {
+    font-family: var(--font-sans-serif);
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-light);
+    color: var(--dark-text-color);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased; /* Smoother fonts */
+    -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+    padding: 35px 45px;
+    max-width: 1300px;
+    margin: 40px auto;
+    background-color: var(--background-card);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-medium);
+}
+
+footer {
+    margin-top: 50px;
+    padding: 25px;
+    text-align: center;
+    font-size: 0.9em;
+    color: var(--light-text-color);
+    border-top: 1px solid var(--border-color);
+    background-color: var(--background-light);
+}
+
+/* --- Navigation --- */
+nav {
+    background-color: var(--primary-color);
+    padding: 15px 40px;
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex; /* For better alignment */
+    justify-content: space-between; /* Push brand/home to left, actions to right */
+    align-items: center;
+}
+.nav-brand { /* You can wrap your Home link in this class */
+    font-size: 1.4em;
+    font-weight: 700;
+}
+.nav-links a, .nav-user-info span {
+    text-decoration: none;
+    color: #f0f0f0;
+    margin: 0 10px;
+    padding: 8px 0;
+    transition: color 0.2s ease;
+    font-weight: 500;
+}
+.nav-links a:hover, .nav-links a:focus, .nav-user-info span:hover {
+    color: #ffffff;
+}
+.nav-user-info span {
+    font-weight: 600;
+}
+hr.nav-hr { /* Replaces the default <hr> if you want a styled separator */
+    display: none;
+}
+
+/* --- Headings --- */
+h1, h2, h3, h4 {
+    color: var(--dark-text-color);
+    margin-top: 2em;
+    margin-bottom: 1em;
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 2.6em;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 15px;
+    margin-bottom: 1.2em;
+    letter-spacing: -0.5px;
+}
+
+h2 {
+    font-size: 2em;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 1.5em;
+    font-weight: 600;
+}
+
+h3 { font-size: 1.6em; color: #454954; font-weight: 600; }
+h4 { font-size: 1.3em; color: #5a5f6b; margin-bottom: 0.8em; font-weight: 500; }
+
+/* --- Forms --- */
+form { margin-bottom: 30px; }
+form div { margin-bottom: 20px; }
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--dark-text-color);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=number],
+input[type=tel],
+input[type=datetime-local],
+textarea,
+select {
+    width: 100%;
+    max-width: 600px;
+    padding: 14px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+    font-size: 1rem;
+    background-color: #fdfdfd;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus,
+input[type=number]:focus,
+input[type=tel]:focus,
+input[type=datetime-local]:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--primary-color);
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2); /* Softer focus ring */
+    background-color: #fff;
+}
+
+textarea { min-height: 100px; resize: vertical; }
+
+button, input[type="submit"] { /* Style submit inputs like buttons too */
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: var(--box-shadow-soft);
+}
+
+button:hover, button:focus, input[type="submit"]:hover, input[type="submit"]:focus {
+    background-color: #3a7cc5; /* Darker primary */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    outline: none;
+}
+
+button[disabled], input[type="submit"][disabled] {
+    background-color: #adb5bd;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* --- Specific Button Styles --- */
+.button-secondary {
+    background-color: var(--light-text-color);
+    color: white;
+}
+.button-secondary:hover {
+    background-color: #606060;
+}
+
+.button-small {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    margin: 0 3px;
+}
+
+.button-success { background-color: var(--success-color); color: white; }
+.button-success:hover { background-color: #218838; }
+
+.button-danger { background-color: var(--danger-color); color: white; }
+.button-danger:hover { background-color: #c82333; }
+
+/* --- Form Layouts (e.g., inline on dashboard) --- */
+.inline-form {
+    padding: 25px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    margin-bottom: 35px;
+    background-color: #f9fafc;
+    box-shadow: var(--box-shadow-soft);
+}
+.inline-form h4 { margin-top: 0; margin-bottom: 20px; }
+.inline-form input,
+.inline-form select,
+.inline-form button {
+    margin-right: 15px;
+    margin-bottom: 15px;
+    vertical-align: middle;
+    width: auto;
+    display: inline-block;
+}
+
+/* --- Tables --- */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-shadow: var(--box-shadow-soft);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+th, td {
+    border-bottom: 1px solid var(--border-color);
+    padding: 14px 18px;
+    text-align: left;
+    vertical-align: middle;
+}
+td { color: #555966; font-size: 0.95rem; }
+tr:last-child td { border-bottom: none; }
+
+th {
+    background-color: #f1f3f7; /* Slightly darker header */
+    font-weight: 600;
+    color: var(--dark-text-color);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.75px;
+}
+tr:nth-child(even) td { background-color: #fdfdfe; } /* Even more subtle striping */
+tr:hover td { background-color: #e9f3ff; /* Lighter blue hover */ }
+
+/* --- Dashboard Sections --- */
+section {
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #f0f0f0; /* Lighter separator */
+}
+section:last-child { border-bottom: none; }
+
+/* --- Flash Messages --- */
+.flashes { padding: 0; margin: 0 0 30px 0; }
+.alert {
+    padding: 16px 22px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    display: flex; /* For icon alignment */
+    align-items: center;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.07);
+}
+/* Basic icon styling (you'd add actual icons via HTML/SVG) */
+.alert::before {
+    margin-right: 10px;
+    font-weight: bold; /* Placeholder for icon */
+}
+.alert-success { color: #0f5132; background-color: #d1e7dd; border-color: #badbcc; }
+.alert-success::before { content: "✓"; } /* Example icon */
+.alert-danger { color: #842029; background-color: #f8d7da; border-color: #f5c2c7; }
+.alert-danger::before { content: "!"; } /* Example icon */
+.alert-warning { color: #664d03; background-color: #fff3cd; border-color: #ffecb5; }
+.alert-warning::before { content: "⚠"; } /* Example icon */
+.alert-info { color: #055160; background-color: #cff4fc; border-color: #b6effb; }
+.alert-info::before { content: "ℹ"; } /* Example icon */
+
+/* --- Status Indicators --- */
+.status-pending    { color: var(--warning-color); font-weight: bold; background-color: #fff3cd; padding: 3px 8px; border-radius: 4px; display: inline-block; }
+.status-paid       { color: var(--success-color); font-weight: bold; background-color: #d1e7dd; padding: 3px 8px; border-radius: 4px; display: inline-block; }
+.status-scheduled  { color: var(--info-color); font-weight: bold; background-color: #cff4fc; padding: 3px 8px; border-radius: 4px; display: inline-block; }
+.status-completed  { color: var(--light-text-color); font-weight: bold; background-color: #e9ecef; padding: 3px 8px; border-radius: 4px; display: inline-block; }
+.status-cancelled  { color: var(--danger-color); font-weight: bold; background-color: #f8d7da; padding: 3px 8px; border-radius: 4px; display: inline-block; }
+
+/* --- Lists --- */
+ul { list-style: none; padding-left: 0; }
+li { padding: 10px 0; border-bottom: 1px solid #f0f0f0; font-size: 0.98rem; }
+li:last-child { border-bottom: none; }
+
+/* --- Utility Classes --- */
+.text-center { text-align: center; }
+.mt-1 { margin-top: 0.5rem; }
+.mb-1 { margin-bottom: 0.5rem; }
+/* Add more as needed */
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    main { padding: 25px; margin: 20px 15px; }
+    nav { padding: 10px 20px; flex-direction: column; align-items: flex-start; }
+    .nav-brand { margin-bottom: 10px; }
+    .nav-links { display: flex; flex-direction: column; width: 100%; }
+    .nav-links a, .nav-user-info span { margin: 5px 0; display: block; }
+    .nav-user-info { margin-top: 10px; }
+
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.6em; }
+    .inline-form input, .inline-form select, .inline-form button {
+        display: block; width: 100%; margin-right: 0;
+    }
+    table, thead, tbody, th, td, tr { display: block; } /* Stack table on small screens */
+    thead tr { position: absolute; top: -9999px; left: -9999px; } /* Hide table headers */
+    tr { border: 1px solid var(--border-color); margin-bottom: 1rem; border-radius: var(--border-radius); }
+    td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%; /* Space for label */
+        text-align: right; /* Align data to right */
+    }
+    td:before {
+        position: absolute;
+        top: 12px; /* Adjust as needed */
+        left: 12px; /* Adjust as needed */
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        content: attr(data-label); /* Add data-label attributes to your <td> in HTML for this to work */
+    }
+    /* Example HTML for responsive table TD: <td data-label="Patient Name">{{ appt.patient.patient_name }}</td> */
+}
+
+/* --- Accessibility (already partially present) --- */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
