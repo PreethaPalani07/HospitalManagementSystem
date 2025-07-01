@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Schedule Appointment{% endblock %}
+
+{% block content %}
+    <h2>Schedule New Appointment</h2>
+    <form action="{{ url_for('schedule_appointment') }}" method="post">
+        <div>
+            <label for="patient_id">Patient:</label>
+            <select id="patient_id" name="patient_id" required>
+                <option value="">Select Patient</option>
+                {% for patient in patients %}
+                <option value="{{ patient.id }}">{{ patient.patient_name }} (ID: {{ patient.id }})</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="doctor_id">Doctor:</label>
+            <select id="doctor_id" name="doctor_id" required>
+                 <option value="">Select Doctor</option>
+                 {% for doctor in doctors %}
+                 <option value="{{ doctor.id }}">{{ doctor.doctor_name }} (Dept: {{ doctor.department_id }})</option>
+                 {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="appointment_date">Date and Time:</label>
+            <input type="datetime-local" id="appointment_date" name="appointment_date" required>
+        </div>
+        <div>
+            <label for="reason">Reason:</label>
+            <textarea id="reason" name="reason" rows="3"></textarea>
+        </div>
+        <button type="submit">Schedule</button>
+    </form>
+{% endblock %}

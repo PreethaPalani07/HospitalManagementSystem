@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Doctor Dashboard{% endblock %}
+
+{% block content %}
+    <h1>Doctor Dashboard</h1>
+    <h2>Welcome, {{ doctor.doctor_name if doctor else 'Doctor' }}!</h2>
+    <p>Department: {{ doctor.department_id if doctor else 'N/A' }}</p>
+
+    <section>
+        <h3>Your Upcoming Appointments</h3>
+        {% if appointments %}
+        <table>
+            <thead>
+                <tr><th>Date/Time</th><th>Patient</th><th>Reason</th><th>Status</th><th>Actions</th></tr>
+            </thead>
+            <tbody>
+                {% for appt in appointments %}
+                <tr>
+                    <td>{{ appt.appointment_date.strftime('%Y-%m-%d %H:%M') if appt.appointment_date else 'N/A' }}</td>
+                    <td>{{ appt.patient.patient_name if appt.patient else 'N/A' }} (ID: {{appt.patient_id}})</td>
+                    <td>{{ appt.reason }}</td>
+                    <td><span class="status-{{ appt.status | lower }}">{{ appt.status }}</span></td>
+                    <td>
+                        {# Doctor actions like 'View Patient Details', 'Start Consultation' (future) #}
+                        <button class="button-small" disabled>View Details</button>
+                        {% if appt.status == 'Scheduled' %}
+                        <button class="button-small button-success" disabled>Start Consult</button>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>You have no upcoming appointments scheduled.</p>
+        {% endif %}
+    </section>
+
+    {# Potentially add sections for completed consultations, patient history access etc. #}
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <h1>Welcome to the Hospital Management System</h1>
+
+    {% if not session.user_id %} {# Check if NO user is logged in #}
+    <h2>Login</h2>
+    <form action="{{ url_for('login') }}" method="post">
+        <div>
+            <label for="identifier">Username or Email:</label>
+            <input type="text" id="identifier" name="identifier" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit">Login</button>
+    </form>
+    <p>New Patient? <a href="{{ url_for('register_patient') }}">Register Here</a></p>
+    {% else %}
+        <p>You are already logged in. Go to your dashboard.</p>
+        {% if user_role == 'admin' %}
+            <p><a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a></p>
+        {% elif user_role == 'doctor' %}
+            <p><a href="{{ url_for('doctor_dashboard') }}">Doctor Dashboard</a></p>
+        {% elif user_role == 'patient' %}
+            <p><a href="{{ url_for('patient_dashboard') }}">Patient Dashboard</a></p>
+        {% endif %}
+    {% endif %}
+{% endblock %}

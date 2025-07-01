@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Register Patient{% endblock %}
+
+{% block content %}
+    <h2>Register New Patient Account</h2>
+    {# Pass back form values on validation error #}
+    <form action="{{ url_for('register_patient') }}" method="post">
+        <div>
+            <label for="patient_name">Full Name:</label>
+            <input type="text" id="patient_name" name="patient_name" value="{{ name or '' }}" required>
+        </div>
+        <div>
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" value="{{ email or '' }}" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+        </div>
+        <div>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" value="{{ age or '' }}">
+        </div>
+         <div>
+            <label for="phone_number">Phone Number:</label>
+            <input type="tel" id="phone_number" name="phone_number" value="{{ phone or '' }}" required>
+        </div>
+         <div>
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="3">{{ address or '' }}</textarea>
+        </div>
+        <button type="submit">Register</button>
+    </form>
+{% endblock %}

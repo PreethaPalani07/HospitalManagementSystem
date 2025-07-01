@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Patient Dashboard{% endblock %}
+
+{% block content %}
+    <h1>Patient Dashboard</h1>
+    <h2>Welcome, {{ patient.patient_name if patient else 'Patient' }}!</h2>
+    <p>Email: {{ patient.email if patient else 'N/A' }} | Phone: {{ patient.phone_number if patient else 'N/A' }}</p>
+
+    <section>
+        <h3>Your Appointments</h3>
+         {% if appointments %}
+         <table>
+            <thead>
+                <tr><th>Date/Time</th><th>Doctor</th><th>Department</th><th>Reason</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+                {% for appt in appointments %}
+                <tr>
+                    <td>{{ appt.appointment_date.strftime('%Y-%m-%d %H:%M') if appt.appointment_date else 'N/A' }}</td>
+                    <td>{{ appt.doctor.doctor_name if appt.doctor else 'N/A' }}</td>
+                    <td>{{ appt.doctor.department_id if appt.doctor else 'N/A' }}</td>
+                    <td>{{ appt.reason }}</td>
+                    <td><span class="status-{{ appt.status | lower }}">{{ appt.status }}</span></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+         </table>
+         {% else %}
+         <p>You have no appointments recorded.</p>
+         {% endif %}
+    </section>
+
+    <section>
+         <h3>Your Bills</h3>
+         {% if bills %}
+         <table>
+             <thead><tr><th>Bill ID</th><th>Amount</th><th>Issued Date</th><th>Status</th><th>Actions</th></tr></thead>
+             <tbody>
+                 {% for bill in bills %}
+                 <tr>
+                     <td>{{ bill.id }}</td>
+                     <td>{{ "%.2f"|format(bill.amount) }}</td>
+                     <td>{{ bill.issued_date.strftime('%Y-%m-%d %H:%M') if bill.issued_date else 'N/A' }}</td>
+                     <td><span class="status-{{ bill.payment_status | lower }}">{{ bill.payment_status }}</span></td>
+                     <td>
+                         {% if bill.payment_status == 'Pending' %}
+                             {# Placeholder for a 'Pay Now' button - needs payment gateway integration #}
+                             <button class="button-small button-success" disabled>Pay Now</button>
+                         {% endif %}
+                         <button class="button-small" disabled>View Details</button>
+                     </td>
+                 </tr>
+                 {% endfor %}
+             </tbody>
+         </table>
+         {% else %}
+         <p>You have no bills recorded.</p>
+         {% endif %}
+    </section>
+
+    {# Maybe an option to edit profile details in the future #}
+{% endblock %}
